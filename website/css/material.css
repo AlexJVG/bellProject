@@ -1,0 +1,59 @@
+.material-form {
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px;
+}
+.material-form div {
+	position: relative;
+}
+.material-input-group {
+	margin: auto;
+	margin-bottom: 60px;
+}
+.material-form input {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 35px;
+	font-size: 16px;
+	border: none;
+	border-bottom: 1px solid #d9d9d9;
+	background-color: transparent;
+}
+.material-form input:focus {
+	outline: none;
+	border-width: 2px;
+	border-color: #4285f4;
+	transition: all .2s ease-out;
+}
+.has-value:valid + label {
+	top: -15px;
+	color: #757575;
+	font-size: 12px;
+}
+.material-form-control:focus + label {
+	top: -15px;
+	color: #4285f4;
+	font-size: 12px;
+}
+.material-form-control + label {
+	position: absolute;
+	top: 10px;
+	left: 3px;
+	font-size: 16px;
+	color: #999999;
+	transition: all .2s ease-out;
+	z-index: 2;
+}
+.material-form-button {
+	background-color: #4285f4;
+	color: white;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 500;
+	border: none;
+	height: 36px;
+	padding: 0 16px;
+	border-radius: 2px;
+	box-shadow:0 1px 3px #999999;
+	outline: none;
+}
