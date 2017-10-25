@@ -1,4 +1,4 @@
-const api = '/api',
+const api = 'https://bell.mvhs.club/api',
 	documentOriginalTitle = 'MVHS Bell Countdown';
 var data,
 	untouchedData;
