@@ -1,4 +1,4 @@
-const api = 'https://bell.mvhs.club/api',
+const api = '/api',
 	documentOriginalTitle = 'MVHS Bell Countdown';
 var data,
 	untouchedData;
@@ -12,6 +12,23 @@ function toStandardTime(time) {
 	if (hours > 12) hours = hours - 12;
 	return(hours + ':' + time[1]);
 }
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+function notSeenThenAlert(text) {
+	if (!localStorage.getItem(text)) {
+		alert(text);
+		localStorage.setItem(text, 'seen');
+	}
+}
+
+var embed = getParameterByName('_embed');
 
 $(function() {
 	if ('serviceWorker' in navigator) {
@@ -49,7 +66,7 @@ $(function() {
 			currentMilitaryTime = d.getHours() + ':' + minutes;
 
 			periodNames = JSON.parse(localStorage.getItem('periodNames'));
-			console.log(periodNames);
+
 			if (data.days[dateNiceFormat]) {
 
 				if (data.days[dateNiceFormat].type) {
@@ -172,30 +189,73 @@ $(function() {
 				},3600000)
 			}
 
-			$table = $('#schedule-dropdown').find('table');
-			for (z in data.days[dateNiceFormat].schedule) {
-				cacheName = data.days[dateNiceFormat].schedule[z];
-				if (typeof(cacheName.name[0]) == 'number' || /\d/.test(cacheName.name[0]) || cacheName.name[0] == 'Lunch' || cacheName.name[0] == 'Brunch') {
-					$table.append('<tr class="schedule-table-row" id="' + cacheName.name[1].replace(/\s/g, '') + '"><td>' + cacheName.name[1] + '</td><td class="right-table-row">' + toStandardTime(cacheName.from) + ' - ' + toStandardTime(cacheName.to) + '</td></tr>');
+			if (embed == 'true') {
+				document.body.focus();
+			} else {
+				$table = $('#schedule-dropdown').find('table');
+				for (z in data.days[dateNiceFormat].schedule) {
+					cacheName = data.days[dateNiceFormat].schedule[z];
+					if (typeof(cacheName.name[0]) == 'number' || /\d/.test(cacheName.name[0]) || cacheName.name[0] == 'Lunch' || cacheName.name[0] == 'Brunch') {
+						$table.append('<tr class="schedule-table-row" id="' + cacheName.name[1].replace(/\s/g, '') + '"><td>' + cacheName.name[1] + '</td><td class="right-table-row">' + toStandardTime(cacheName.from) + ' - ' + toStandardTime(cacheName.to) + '</td></tr>');
+					}
 				}
-			}
-			for (hi in periodNames) {
-				if (periodNames[hi] != '') {
-					$('input[name="' + hi + '"]').attr('value', periodNames[hi]).addClass('has-value');
+				for (hi in periodNames) {
+					if (periodNames[hi] != '') {
+						$('input[name="' + hi + '"]').attr('value', periodNames[hi]).addClass('has-value');
+					}
 				}
 			}
 		}
 	});
-	$('#change-names-form').on('submit', function() {
-		var formData = $(this).serializeArray();
-		var jsonValues = {};
-		$.map(formData, function(n, i){
-			jsonValues[n['name']] = n['value'];
+	if (embed == 'true') {
+		var idsToRemove = ['help-menu','schedule-dropdown', 'notification-div', 'second-div'];
+		for (w in idsToRemove) {
+			var elementToRemove = document.getElementById(idsToRemove[w]);
+			elementToRemove.parentNode.removeChild(elementToRemove);
+		}
+
+		document.getElementById('type-of-day').style.cursor = 'auto';
+		document.body.style.overflow = 'hidden';
+	} else {
+		notSeenThenAlert("Version 1.2 Updates:\n\n1) There is now a Chrome Extension for this. Download by clicking the corner notification\n\n2) Introducing the help menu: By clicking the ? in the bottom right corner, you can get access to background information about this app.");
+		$(window).scroll(function(event) {
+			var scrollTopVar = $(document).scrollTop();
+			if (scrollTopVar > 0 && window.innerWidth > 900) {
+				$('#help-menu').show();
+			} else {
+				$('#help-menu').hide();
+			}
 		});
-		localStorage.setItem('periodNames', JSON.stringify(jsonValues));
-		
-		/*window.location.href = '/?' + $(this).serialize();
-		location.reload();
-		return false;*/
-	});
+		$('#mG61Hd').on('submit', function() {
+			var here = this;
+			var a = $(here).serialize();
+			$.ajax({
+				type: "POST",
+				url: "https://docs.google.com/forms/d/e/1FAIpQLSfa-8n2rPhlrR0e0Gcni3rCs4-keO1SZAo19TQ5DdZEEfZghA/formResponse",
+				data: a,
+				success: function(formsData) {
+					console.log(formsData);
+					if (formsData.includes('Your response has been recorded.')) {
+						$(here).html('<p>We will take a look at it as soon as possible!</p>')
+					}
+				},
+				error: function(formsData) {
+					$(here).html('<p>We will take a look at it as soon as possible!</p>')
+				}
+			})
+			return false;
+		});
+		$('#change-names-form').on('submit', function() {
+			var formData = $(this).serializeArray();
+			var jsonValues = {};
+			$.map(formData, function(n, i){
+				jsonValues[n['name']] = n['value'];
+			});
+			localStorage.setItem('periodNames', JSON.stringify(jsonValues));
+			
+			/*window.location.href = '/?' + $(this).serialize();
+			location.reload();
+			return false;*/
+		});
+	}
 });

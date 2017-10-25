@@ -12,16 +12,26 @@ h1, h2, h3, h4, h5, h6, p, a {
 	margin: 0;
 	padding: 0;
 }
+a {
+	color: black;
+	border-bottom: 3px solid #fccb0b;
+}
+a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
 #type-of-day, #today-date, #period-names-title {
 	color: black;
 	font-weight: bold;
 }
 #first-div {
 	background-color: #fccb0b;
-	height: 100vh;
 }
 #second-div {
 	background-color: white;
+}
+#first-div, #second-div {
 	min-height: 100vh;
 }
 #progress-bar-text {
@@ -44,7 +54,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 #entire-progress-bar {
 	margin-top: 20px;
 	background-color: #1a1a1a;
-	height: 450px;
+	height: 60vh;
 	border-radius: 20px;
 	overflow: hidden;
 }
@@ -78,7 +88,10 @@ h1, h2, h3, h4, h5, h6, p, a {
 	margin: 0 20px 0 75px;
 	padding: 0 0 35px 0;
 }
-
+.material-form-button {
+	background-color: #fccb0b;
+	color: black;
+}
 @media only screen and (max-width: 768px) {
 	#progress-bar-text {
 		font-size: 80px;
@@ -113,6 +126,9 @@ h1, h2, h3, h4, h5, h6, p, a {
 	}
 	#footer {
 		margin-left: 20px;
+	}
+	#help-menu {
+		display: none;
 	}
 }
 @media only screen and (max-width: 350px) {
@@ -198,4 +214,88 @@ label {
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
+}
+
+
+/*Help Menu*/
+#help-menu {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 300px;
+	z-index: 10;
+	display: none;
+}
+#help-menu-question-mark {
+	width: 65px;
+	height: 65px;
+	background-color: black;
+	border-radius: 50%;
+	border: 3px solid white;
+	display: table;
+	float: right;
+}
+#help-menu-question-mark h1 {
+	color: #fccb0b;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 40px;
+}
+#help-menu-question-mark:hover {
+	cursor: pointer;
+}
+#help-menu-main-content {
+	width: 100%;
+	height: 500px;
+	background-color: white;
+	display: none;
+	border: 5px solid black;
+	border-radius: 10px;
+	padding: 15px;
+	color: black;
+}
+#help-menu-main-content p {
+	font-size: 14px;
+}
+.help-menu-tile {
+	margin: 15px 0px;
+	background-color: rgba(0, 0, 0, .10);
+	padding: 10px;
+	border-radius: 10px;
+}
+.help-menu-tile h4 {
+	margin: 0 0 5px 0;
+}
+
+/*Notification Div*/
+#notification-div {
+	z-index: 5;
+	background-color: #1a1a1a;
+	height: 50px;
+	position: absolute;
+	padding: 10px;
+	transition: opacity 0.3s ease, background-color 1s ease;
+	right: 0;
+	top: 0;
+	margin: 10px;
+	text-align: center;
+	display: table;
+}
+
+#notification-div i {
+	display: table-cell;
+	color: white;
+	cursor: pointer;
+}
+
+#notification-div > p {
+	margin-right: 10px;
+}
+
+#notification-div > p > a {
+	font-size: 18px;
+	color: white;
+	vertical-align: middle;
+	display: table-cell;
 }

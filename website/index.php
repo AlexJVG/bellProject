@@ -12,21 +12,21 @@
 		<meta name="viewport" content="width=device-width">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="theme-color" content="#fccb0b">
-		<link rel="manifest" href="/manifest.json?v=1.1">
-		<link rel="shortcut icon" href="/images/touch/1024.png?v=1.1">
+		<link rel="manifest" href="/manifest.json?v=1.2">
+		<link rel="shortcut icon" href="/images/touch/1024.png?v=1.2">
 
-		<link rel="apple-touch-icon" sizes="1024x1024" href="/images/touch/1024Square.png?v=1.1">
+		<link rel="apple-touch-icon" sizes="1024x1024" href="/images/touch/1024Square.png?v=1.2">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-title" content="Countdown">
 
 		<meta name="application-name" content="Countdown">
 
-		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons" rel="stylesheet">
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<link rel="stylesheet" type="text/css" href="/css/material.css?v=1.1">
-		<link rel="stylesheet" type="text/css" href="/css/main.css?v=1.1">
+		<link rel="stylesheet" type="text/css" href="/css/material.css?v=1.2">
+		<link rel="stylesheet" type="text/css" href="/css/main.css?v=1.2.1">
 		
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108094966-1"></script>
 		<script>
@@ -38,6 +38,55 @@
 	</head>
 	<body>
 		<input style="height: 0; margin: 0; padding: 0; z-index: -5; position: absolute;" />
+		<div id="notification-div">
+			<p>
+				<a target="_blank" href="https://chrome.google.com/webstore/detail/mvhs-bell-countdown/enpponilfcooflcegkodmpdgboooohjm">Install the Chrome Extension</a>
+			</p>
+			<i class="material-icons" onclick="$('#notification-div').css('opacity', '0');">cancel</i>
+		</div>
+		<div id="help-menu">
+			<div id="help-menu-question-mark" onclick="$(this).hide();$('#help-menu').animate({top: '20%'});$('#help-menu-main-content').slideDown(300);">
+				<h1>?</h1>
+			</div>
+			<div id="help-menu-main-content">
+				<div style="height: 92%; overflow-y: scroll;">
+					<h1 style="font-weight: bold; color: black; padding: 0px 3px; display: inline;">Help/About</h1>
+					<!-- <div class="help-menu-tile">
+						<h4>FAQ</h4>
+						<div style="height: 8px;"></div>
+						<p><span style="font-weight: bold;">Q:</span> Is there a Google Chrome Extension?</p>
+						<p><span style="font-weight: bold;">A:</span> Yes. Click <a href="https://chrome.google.com/webstore/detail/mvhs-bell-countdown/enpponilfcooflcegkodmpdgboooohjm" target="_blank">here</a> to download it.</p>
+						<div style="height: 8px;"></div>
+						<p><span style="font-weight: bold;">Q:</span> How do I view today's full schedule?</p>
+						<p><span style="font-weight: bold;">A:</span> Hover over the text directly below today's date.</p>
+					</div> -->
+					<div class="help-menu-tile">
+						<h4>Any comments, questions, or suggestions?</h4>
+						<form action="https://docs.google.com/forms/d/e/1FAIpQLSfa-8n2rPhlrR0e0Gcni3rCs4-keO1SZAo19TQ5DdZEEfZghA/formResponse" target="_blank" method="POST" id="mG61Hd">
+							<input required type="text" autocomplete="off" name="entry.817291111" placeholder="Your Name" style="outline: none; border: none; padding: 5px; background: transparent; width: 45%;" />
+							<input type="email" name="entry.1776598004" placeholder="Your Email" required style="outline: none; border: none; padding: 5px; background: transparent; width: 45%; border-left: 1px solid #ccc;" />
+							<div style="height: 1px; background-color: #ccc;"></div>
+							<textarea required name="entry.1559247310" placeholder="Write here..." style="outline: none; border: none; border-radius: 3px; padding: 5px; background: transparent; width: 100%; height: 30px;" onfocus="$(this).animate({height: '100px'}, 300);" onfocusout="$(this).animate({height: '30px'}, 300);"></textarea>
+							<input type="hidden" name="fvv" value="1">
+							<input type="hidden" name="draftResponse" value="[null,null,&quot;-4370327041105561515&quot;]">
+							<input type="hidden" name="pageHistory" value="0">
+							<input type="hidden" name="fbzx" value="-4370327041105561515">
+							<br>
+							<button class="material-form-button">Submit</button>
+						</form>
+					</div>
+					<div class="help-menu-tile">
+						<h4>Contact</h4>
+						<p><span style="font-weight: bold;">Email:</span> <a href="mailto:hi@mvhs.club">hi@mvhs.club</a></p>
+					</div>
+					<div class="help-menu-tile">
+						<h4>Disclaimer</h4>
+						<p>This website and the Google Chrome extension are not officially endorsed or affiliated with Mountain View High School. There is no guarantee that these apps are correct. Therefore, we are not responsible for tardies, absences, etc.</p>
+					</div>
+				</div>
+				<button class="material-form-button" style="margin-top: 10px;" onclick="$('#help-menu').animate({top: '86%'}, function() {$('#help-menu-question-mark').show();});$('#help-menu-main-content').slideUp(300);">Close</button>
+			</div>
+		</div>
 		<div id="first-div">
 			<div class="inner-main-div">
 				<h1 style="width: 75%; background-color: black;" class="not-loaded" id="today-date">&nbsp;</h1>
@@ -120,13 +169,7 @@
 			</div>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="/js/material.js?v=1.1"></script>
-		<script src="/js/main.js?v=1.1"></script>
-		<script>
-			if (!localStorage.getItem('v1.1Update')) {
-				alert("Version 1.1 Updates:\n\n1) Hover over the large date at the top of the page and today's schedule appears (click instead of hover on smartphones)\n\n2) You enter custom period names by scrolling down.\n\n3) If you're on a smartphone, you can now easily add bell.mvhs.club to your homescreen.");
-				localStorage.setItem('v1.1Update', 'true');
-			}
-		</script>
+		<script src="/js/material.js?v=1.2"></script>
+		<script src="/js/main.js?v=1.2.1"></script>
 	</body>
 </html>
