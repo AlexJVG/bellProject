@@ -12,21 +12,23 @@
 		<meta name="viewport" content="width=device-width">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="theme-color" content="#fccb0b">
-		<link rel="manifest" href="/manifest.json?v=1.2">
-		<link rel="shortcut icon" href="/images/touch/1024.png?v=1.2">
+		<link rel="manifest" href="/manifest.json?v=1.3">
+		<link rel="shortcut icon" href="/images/touch/1024.png?v=1.3">
 
-		<link rel="apple-touch-icon" sizes="1024x1024" href="/images/touch/1024Square.png?v=1.2">
+		<link rel="apple-touch-icon" sizes="1024x1024" href="/images/touch/1024Square.png?v=1.3">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-title" content="Countdown">
 
 		<meta name="application-name" content="Countdown">
 
+		<meta name="google-signin-client_id" content="989074405041-k1nns8p3h7eb1s7c6e3j6ui5ohcovjso.apps.googleusercontent.com">
+
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons" rel="stylesheet">
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<link rel="stylesheet" type="text/css" href="/css/material.css?v=1.2">
-		<link rel="stylesheet" type="text/css" href="/css/main.css?v=1.2.1">
+		<link rel="stylesheet" type="text/css" href="/css/material.css?v=1.3">
+		<link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3">
 		
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108094966-1"></script>
 		<script>
@@ -44,7 +46,7 @@
 			</p>
 			<i class="material-icons" onclick="$('#notification-div').css('opacity', '0');">cancel</i>
 		</div>
-		<div id="help-menu">
+		<div id="help-menu" class="remove-on-embed">
 			<div id="help-menu-question-mark" onclick="$(this).hide();$('#help-menu').animate({top: '20%'});$('#help-menu-main-content').slideDown(300);">
 				<h1>?</h1>
 			</div>
@@ -92,7 +94,7 @@
 				<h1 style="width: 75%; background-color: black;" class="not-loaded" id="today-date">&nbsp;</h1>
 				<div style="display: inline; position: relative;">
 					<h1 style="width: 45%; background-color: black;" id="type-of-day" onclick="$('#schedule-dropdown').slideDown(300);" onmouseover="$('#schedule-dropdown').slideDown(300);" class="not-loaded">&nbsp;</h1>
-					<div id="schedule-dropdown">
+					<div id="schedule-dropdown" class="remove-on-embed">
 						<h1>Today's Schedule</h1>
 						<table>
 							<tr>
@@ -115,10 +117,27 @@
 				</div>
 			</div>
 		</div>
-		<div id="second-div">
-			<div class="inner-main-div" style="padding-top: 50px; height: ">
+		<div id="second-div" class="remove-on-embed">
+			<div class="inner-main-div" style="padding-top: 50px;">
 				<div style="border-bottom: 3px solid #fccb0b; display: inline-block;">
 					<h1 id="period-names-title">Period Names</h1>
+				</div>
+				<div id="google-user-status" style="float: right; padding: 15px 0 0 0; display: none;">
+					<div style="display: table;">
+						<div style="display: table-cell;">
+							<img style="border-radius: 50%; height: 50px; width: 50px; float: right; margin: 0 10px 0 0; border: 1px solid black;" src="https://lh4.googleusercontent.com/-HTeS2xWuxm0/AAAAAAAAAAI/AAAAAAAABMc/DnkPdXTlDlQ/s96-c/photo.jpg">
+						</div>
+						<div style="display: table-cell; vertical-align: middle;">
+							<i class="material-icons" style="cursor: pointer;" id="google-signin-dropdown-button" onclick="document.getElementById('google-signin-dropdown').style.display = 'block';">more_vert</i>
+						</div>
+					</div>
+					<div id="google-signin-dropdown">
+						<div>
+							<div>
+								<p style="word-break: break-all;" onclick="gSignOut();"></p>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div id="form-outer-div">
 					<form class="material-form" id="change-names-form">
@@ -159,17 +178,27 @@
 									<label>Period 7</label>
 								</div>
 							</div>
-							<button class="material-form-button">Save</button>
+							<div>
+								<button class="material-form-button" style="display: inline-block;" id="period-names-save-button"><span style="margin-right: 10px; vertical-align: middle;">Save To Your Computer</span><i style="vertical-align: middle;" class="material-icons">computer</i></button>
+								<h3 style="display: inline; margin: 0 20px;" class="remove-on-google">or</h3>
+								<div id="g-signin-main" style="display: inline-block;" data-onsuccess="onSignIn"></div>
+							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 			<div id="footer">
-				<p>This website is very new — it was coded a few weeks ago in a matter of hours. If you found a bug/problem, email <a href="mailto:hi@mvhs.club">hi@mvhs.club</a></p>
+				<p>This website is very new. If you find a bug/problem, email <a href="mailto:hi@mvhs.club">hi@mvhs.club</a></p>
 			</div>
 		</div>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="/js/material.js?v=1.2"></script>
-		<script src="/js/main.js?v=1.2.1"></script>
+		<script src="/js/material.js?v=1.3"></script>
+		<script src="/js/main.js?v=1.3.1"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				
+			};
+		</script>
 	</body>
 </html>

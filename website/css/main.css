@@ -299,3 +299,42 @@ label {
 	vertical-align: middle;
 	display: table-cell;
 }
+
+
+/* Login/Create Account Stuff */
+.abcRioButton {
+	overflow: visible !important;
+}
+#google-signin-dropdown {
+	background-color: white;
+	z-index: 10;
+	right: 50px;
+	float: left;
+	display: inline-block;
+	position: absolute;
+	display: none;
+}
+#google-signin-dropdown > div {
+	float: left;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15), 0 1px 3px 0 rgba(0,0,0,0.15);
+	width: auto;
+	text-align: right;
+	padding-top: 5px;
+}
+#google-signin-dropdown > div > div {
+	padding: 0 0 5px 0;
+	cursor: pointer;
+}
+#google-signin-dropdown > div > div > p {
+	background-color: white;
+	padding: 10px;
+	color: black;
+}
+#google-signin-dropdown > div > div > p:hover {
+	background-color: #e6e6e6 !important;
+}
+@media only screen and (max-width: 768px) {
+	#google-user-status img {
+		display: none;
+	}
+}
