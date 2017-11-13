@@ -1,9 +1,10 @@
-const documentOriginalTitle = 'MVHS Bell Countdown',
-api = {
-	'schedule': 'https://bell.mvhs.club/api/schedule',
-	'get_info': 'https://bell.mvhs.club/api/v1?w=get_info',
-	'update_user': 'https://bell.mvhs.club/api/v1?w=update_user'
-};
+const 
+	documentOriginalTitle = 'MVHS Bell Countdown',
+	api = {
+		'schedule': '/api/schedule',
+		'get_info': '/api/v1?w=get_info',
+		'update_user': '/api/v1?w=update_user'
+	};
 var data,
 	untouchedData,
 	user,
@@ -328,6 +329,9 @@ $(function() {
 			document.body.focus();
 			//notSeenThenAlert("Tired of re-entering your preferences and period names for each of your devices? Using your Google account, you can now sync all of your preferences online! Try it at the full website (bell.mvhs.club)");
 		} else {
+			setTimeout(function() {
+				history.replaceState('', document.title, "/");
+			}, 1000);
 			notSeenThenAlert("Version 1.3 Updates:\n\n1) Tired of re-entering your preferences and period names for each of your devices? Using your Google account, you can now sync all of your preferences online! Scroll to try it out.");
 			$table = $('#schedule-dropdown').find('table');
 			for (z in data.days[dateNiceFormat].schedule) {
@@ -382,11 +386,11 @@ $(function() {
 				setTimeout(function() {
 					document.getElementById('period-names-save-button').innerHTML = lastName;
 				}, 1000);
+
+				if (!usingGoogle) {
+					window.location.href = '/?' + $(this).serialize();
+				}	
 				return false;
-				
-				/*window.location.href = '/?' + $(this).serialize();
-				location.reload();
-				return false;*/
 			});
 		}
 	});

@@ -2,7 +2,7 @@
 	header('Cache-Control: max-age=3600');
 ?>
 <!-- created and maintained by Arjun P (MVHS) -->
-<!-- contact hi@mvhs.club for questions, suggestions, and bugs -->
+<!-- contact bell@mvhs.club for questions, suggestions, and bugs -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,8 +28,9 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 		<link rel="stylesheet" type="text/css" href="/css/material.css?v=1.3">
-		<link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3">
-		
+		<link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.1">
+
+
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108094966-1"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
@@ -53,15 +54,6 @@
 			<div id="help-menu-main-content">
 				<div style="height: 92%; overflow-y: scroll;">
 					<h1 style="font-weight: bold; color: black; padding: 0px 3px; display: inline;">Help/About</h1>
-					<!-- <div class="help-menu-tile">
-						<h4>FAQ</h4>
-						<div style="height: 8px;"></div>
-						<p><span style="font-weight: bold;">Q:</span> Is there a Google Chrome Extension?</p>
-						<p><span style="font-weight: bold;">A:</span> Yes. Click <a href="https://chrome.google.com/webstore/detail/mvhs-bell-countdown/enpponilfcooflcegkodmpdgboooohjm" target="_blank">here</a> to download it.</p>
-						<div style="height: 8px;"></div>
-						<p><span style="font-weight: bold;">Q:</span> How do I view today's full schedule?</p>
-						<p><span style="font-weight: bold;">A:</span> Hover over the text directly below today's date.</p>
-					</div> -->
 					<div class="help-menu-tile">
 						<h4>Any comments, questions, or suggestions?</h4>
 						<form action="https://docs.google.com/forms/d/e/1FAIpQLSfa-8n2rPhlrR0e0Gcni3rCs4-keO1SZAo19TQ5DdZEEfZghA/formResponse" target="_blank" method="POST" id="mG61Hd">
@@ -79,7 +71,7 @@
 					</div>
 					<div class="help-menu-tile">
 						<h4>Contact</h4>
-						<p><span style="font-weight: bold;">Email:</span> <a href="mailto:hi@mvhs.club">hi@mvhs.club</a></p>
+						<p><span style="font-weight: bold;">Email:</span> <a href="mailto:bell@mvhs.club">bell@mvhs.club</a></p>
 					</div>
 					<div class="help-menu-tile">
 						<h4>Disclaimer</h4>
@@ -188,17 +180,12 @@
 				</div>
 			</div>
 			<div id="footer">
-				<p>This website is very new. If you find a bug/problem, email <a href="mailto:hi@mvhs.club">hi@mvhs.club</a></p>
+				<p>This website is very new. If you find a bug/problem, email <a href="mailto:bell@mvhs.club">bell@mvhs.club</a></p>
 			</div>
 		</div>
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="/js/material.js?v=1.3"></script>
-		<script src="/js/main.js?v=1.3.1"></script>
-		<script type="text/javascript">
-			window.onload = function() {
-				
-			};
-		</script>
+		<script src="/js/main.js?v=1.3.3"></script>
 	</body>
 </html>

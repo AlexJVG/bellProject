@@ -4,6 +4,7 @@
 		/*overflow: hidden;*/
 	}
 }
+
 body {
 	font-family: 'Roboto', sans-serif;
 	margin: 0;
@@ -336,5 +337,17 @@ label {
 @media only screen and (max-width: 768px) {
 	#google-user-status img {
 		display: none;
+	}
+}
+
+
+
+/*embed stuff*/
+@media only screen and (width: 400px) {
+	#today-date {
+		display: none;
+	}
+	#entire-progress-bar {
+		height: 265px;
 	}
 }
