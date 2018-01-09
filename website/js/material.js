@@ -1,17 +1,14 @@
-$(function(){
-	$('.material-form-control').each(function(){
-		changeState($(this));
+var materialFormControl = document.getElementsByClassName('material-form-control');
+for (var i = 0; i < materialFormControl.length; i++) {
+	materialFormControl[i].addEventListener('focusout', function(event) {
+		changeState(this);
 	});
-	
-	$('.material-form-control').on('focusout', function() {
-		changeState($(this)); 
-	});
-	
-	function changeState($formControl){
-		if($formControl.val().length > 0){
-			$formControl.addClass('has-value');
-		} else {
-			$formControl.removeClass('has-value');
-		}  
+}
+
+function changeState(formControl) {
+	if (formControl.value.length > 0) {
+		formControl.classList.add('has-value');
+	} else {
+		formControl.classList.remove('has-value');
 	}
-});
+}

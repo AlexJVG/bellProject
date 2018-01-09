@@ -1,0 +1,209 @@
+<!--
+created and maintained by Arjun P (MVHS)
+contact bell@mvhs.club for questions, suggestions, and bugs
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>MVHS Bell Countdown</title>
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="theme-color" content="#fccb0b">
+		<link rel="manifest" href="/manifest.json?v=1.3">
+		<link rel="shortcut icon" href="/images/touch/1024.png?v=1.3">
+
+		<link rel="apple-touch-icon" sizes="1024x1024" href="/images/touch/1024Square.png?v=1.3">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-title" content="Countdown">
+
+		<meta name="application-name" content="Countdown">
+
+		<meta name="google-signin-client_id" content="989074405041-k1nns8p3h7eb1s7c6e3j6ui5ohcovjso.apps.googleusercontent.com">
+
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="/css/material.css?v=1.3">
+		<link rel="stylesheet" type="text/css" href="/css/main.css?v=1.3.1">
+
+		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108094966-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-108094966-1');
+		</script> -->
+	</head>
+	<body>
+		<input style="height: 0; margin: 0; padding: 0; z-index: -5; position: absolute;" />
+		<div class="popup-modal">
+			<div>
+				<h1 class="bold">Submit A Bug</h1>
+				<br>
+				<form class="material-form" style="margin-bottom: 40px;" id="submit-a-bug-form" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLScj05gVFu20Rs9yeMq2YEWkgrdBR9FHl1n1BT41m0uwOLd0wA/formResponse" target="_blank">
+					<div class="material-input-group">
+						<input type="text" autocomplete="off" tabindex="0" name="entry.79331854" required class="material-form-control">
+						<label>Email</label>
+					</div>
+					<div class="material-input-group" style="margin-bottom: 20px;">
+						<textarea type="text" class="material-form-control" style="height: 36px;" required name="entry.374207772"></textarea>
+						<label>Describe the problem</label>
+					</div>
+					<input type="hidden" name="entry.280797450" value="">
+					<input type="hidden" name="fvv" value="1">
+	                <input type="hidden" name="draftResponse" value="[null,null,&quot;9220846105446603049&quot;]">
+	                <input type="hidden" name="pageHistory" value="0">
+	                <input type="hidden" name="fbzx" value="9220846105446603049">
+					<button class="material-form-button">Submit</button>
+				</form>
+			</div>
+			<div style="background: #c8c8c8;">
+				<a onclick="theDOM.modal.close()">Close</a>		
+			</div>
+		</div>
+		<div id="preloader">
+			<div class="material-loader">
+				<svg viewBox="25 25 50 50">
+					<circle cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10"/>
+				</svg>
+			</div>
+		</div>
+		<div id="gapi-fake" style="display: none;"></div>
+		<div id="top-navigation-bar" class="material-horizontal-nav-bar remove-on-embed viewable" style="background: linear-gradient(top, #ffff00 30%, #ffff00 30%, #fe0000 30%);">
+			<div style="display: table; width: 95%; height: 100%; margin: 0 auto;">
+				<div style="display: table-cell; vertical-align: middle;">
+					<h3 id="nav-title">MVHS Bell Countdown</h3>
+				</div>
+				<div style="display: table-cell; vertical-align: middle;">
+					<button id="g-signin-main" data-onsuccess="onSignIn">Sign in with Google</button>
+					<div id="google-user-status">
+						<div style="display: table;">
+							<div style="display: table-cell;">
+								<img src="">
+							</div>
+							<div style="display: table-cell; vertical-align: middle;">
+								<i class="material-icons" style="cursor: pointer;" id="google-signin-dropdown-button" onclick="document.getElementById('google-signin-dropdown').style.display = 'block';">more_vert</i>
+							</div>
+						</div>
+						<div id="google-signin-dropdown">
+							<div>
+								<div>
+									<p style="word-break: break-all;" onclick="gSignOut();"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="notification-div" class="viewable"><p></p></div>
+		<div id="home-section" class="main-section viewable">
+			<div class="inner-main-div">
+				<h1 id="today-date"></h1>
+				<div style="display: inline; position: relative;">
+					<h1 id="type-of-day" onclick="document.getElementById('schedule-dropdown').style.display = 'block';" onmouseover="document.getElementById('schedule-dropdown').style.display = 'block';"></h1>
+					<div id="schedule-dropdown" class="remove-on-embed">
+						<h1>Today's Schedule</h1>
+						<table>
+							<tr>
+								<th>Period</th>
+								<th class="right-table-row">Time</th>
+							</tr>
+						</table>
+						<div style="text-align: center;">
+							<button class="material-form-button" onclick="document.getElementById('schedule-dropdown').style.display = 'none';">Close</button>
+						</div>
+					</div>
+				</div>
+				<div id="entire-progress-bar">
+					<div id="inner-text">
+						<h1 id="progress-bar-text">Loading...</h1>
+						<h1 id="current-period"></h1>
+					</div>
+					<div id="progress-bar"></div>
+				</div>
+			</div>
+		</div>
+		<div id="preferences-section" class="main-section remove-on-embed viewable">
+			<div class="inner-main-div">
+				<div>
+					<h1 id="period-names-title">Period Names</h1>
+				</div>
+				<div id="form-outer-div">
+					<form class="material-form" id="change-names-form">
+						<div class="container" id="form-container">
+							<div class="col-md-6">
+								<div class="material-input-group">
+									<input type="text" name="period0" maxlength="20" autocomplete="off" class="material-form-control"/>
+									<label>Period 0</label>
+								</div>
+								<div class="material-input-group">
+									<input type="text" name="period1" maxlength="20" autocomplete="off" class="material-form-control"/>
+									<label>Period 1</label>
+								</div>
+								<div class="material-input-group">
+									<input type="text" name="period2" maxlength="20" autocomplete="off" class="material-form-control"/>
+									<label>Period 2</label>
+								</div>
+								<div class="material-input-group">
+									<input type="text" name="period3" maxlength="20" autocomplete="off" class="material-form-control"/>
+									<label>Period 3</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="material-input-group">
+									<input type="text" name="period4" maxlength="20" autocomplete="off" class="material-form-control"/>
+									<label>Period 4</label>
+								</div>
+								<div class="material-input-group">
+									<input type="text" name="period5" maxlength="20" autocomplete="off" class="material-form-control"/>
+									<label>Period 5</label>
+								</div>
+								<div class="material-input-group">
+									<input type="text" name="period6" maxlength="20" autocomplete="off" class="material-form-control"/>
+									<label>Period 6</label>
+								</div>
+								<div class="material-input-group">
+									<input type="text" name="period7" maxlength="20" autocomplete="off" class="material-form-control"/>
+									<label>Period 7</label>
+								</div>
+							</div>
+							<div style="clear: both;">
+								<div style="display: inline-block;">
+									<p style="font-size: 14px;" class="material-hoverable"><i style="vertical-align: middle;" class="material-icons">help</i></p>
+									<div>
+										<p>By signing in with Google, all of your preferences will be stored online. Then, when you sign into Google on another device, all of your preferences will automatically transfer.</p>
+									</div>
+								</div>
+								<button class="material-form-button" style="display: none;" id="period-names-save-button"><span style="margin-right: 10px; vertical-align: middle;">Save To The Cloud</span><i style="vertical-align: middle;" class="material-icons">cloud</i></button>
+								<p style="display: inline; margin: 0 20px 0 0; font-size: 14px;" class="remove-on-google">To update your preferences, first sign in by clicking the top right corner.</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="footer" class="remove-on-embed viewable">
+			<div style="padding: 20px; height: 200px; background: #eeeeee;">
+				<div style="display: table; height: 100%; width: 100%;">
+					<div style="height: 100px; display: table-cell; vertical-align: middle;">
+						<img src="/images/touch/1024.png" style="height: 100%;">
+						<h3 style="margin-top: 20px;">MVHS Bell Countdown</h3>
+						<a href="mailto:bell@mvhs.club">bell@mvhs.club</a>
+					</div>
+					<div style="display: table-cell; vertical-align: middle; text-align: right;">
+						<p>Found a bug or problem? <a onclick="theDOM.modal.show();theDOM.insertBugMetaData();">Report a bug</a></p>
+					</div>
+				</div>
+			</div>
+			<div style="background: #455a64; height: 30px; padding: 20px; background: #c8c8c8;">
+				<p style="float: left;"><a target="_blank" href="https://mvhsbell.wordpress.com/">Blog</a> | <a target="_blank" href="https://mvhsbell.wordpress.com/privacy/">Privacy</a></p>
+			</div>
+		</div>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="/js/material.js?v=1.3"></script>
+		<script src="/js/main.js?v=1.3.3"></script>
+	</body>
+</html>
