@@ -560,3 +560,6 @@ label {
 .popup-modal > div {
 	padding: 20px;
 }
+#type-of-day:hover{
+	text-decoration: underline;
+}
